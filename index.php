@@ -82,10 +82,10 @@ $hotels = [
                 foreach ($hotels as $hotel) { ?>
                     <tr>
                         <?php foreach ($hotel as $key => $item) {
-                            if ($hotel[$parking]) {
-                                $hotel[$parking] = "presente";
+                            if ($hotel["parking"]) {
+                                $hotel["parking"] = "presente";
                             } else {
-                                $hotel[$parking] = 'assente';
+                                $hotel["parking"] = 'assente';
                             } ?>
 
                             <th scope="row"> <?php echo $item ?> </th>
