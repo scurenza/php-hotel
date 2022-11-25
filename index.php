@@ -1,5 +1,6 @@
 <?php
-
+$data = $_GET;
+var_dump($data);
 $hotels = [
 
     [
@@ -66,6 +67,24 @@ $hotels = [
 
 <body>
     <section class="hotels">
+        <form action="index.php" method="GET">
+            <div class="m-3">
+                <label for="hotel-parking">L'Hotel deve avere il parcheggio?</label>
+                <select name="hotel-parking" id="hotel-parking">
+                    <option value=""></option>
+                    <option value="si">Si</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="m-3">
+                <label for="hotel-vote">Quante stelle deve avere minimo?</label>
+                <input type="text" name="hotel-vote" id="hotel-vote" placeholder="0">
+            </div>
+            <div class="m-3">
+                <button class="me-3" type="submit">Invia</button>
+                <button type="reset">Cancella</button>
+            </div>
+        </form>
         <h1>Lista Hotels</h1>
         <table class="table table-striped">
             <thead>
@@ -83,7 +102,7 @@ $hotels = [
                     <tr>
                         <?php foreach ($hotel as $key => $item) {
                             if ($key === "parking") {
-                                if ($item) { ?>
+                                if ($item && $data["hotel-parking"] === 'si') { ?>
                                     <th scope="row"> <?php echo "presente" ?> </th>
                                 <?php } else { ?>
                                     <th scope="row"> <?php echo "assente" ?> </th>
