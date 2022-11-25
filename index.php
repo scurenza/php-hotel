@@ -67,7 +67,7 @@ $hotels = [
 <body>
     <section class="hotels">
         <h1>Lista Hotels</h1>
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">Nome</th>
@@ -87,12 +87,13 @@ $hotels = [
                                     <th scope="row"> <?php echo "presente" ?> </th>
                                 <?php } else { ?>
                                     <th scope="row"> <?php echo "assente" ?> </th>
-                            <?php }
-                            }
-                            ?>
+                                <?php }
+                            } else {
+                                ?>
 
-                            <th scope="row"> <?php echo $item ?> </th>
-                        <?php } ?>
+                                <th scope="row"> <?php echo $item ?> </th>
+                        <?php }
+                        } ?>
                     </tr>
                 <?php }
                 ?>
