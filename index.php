@@ -65,8 +65,8 @@ $hotels = [
         <h1>Lista Hotels</h1>
         <ul>
 
-            <?php foreach ($hotel as $hotels) {
-                foreach ($item as $hotel) { ?>
+            <?php foreach ($hotels as $hotel) {
+                foreach ($hotel as $item) { ?>
                     <li>
                         <?php echo $item; ?>
                     </li>
