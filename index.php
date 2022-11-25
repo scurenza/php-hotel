@@ -40,6 +40,26 @@ $hotels = [
     ],
 
 ];
+
+if ($_GET["hotel-parking"] && $_GET["hotel-vote"]) {
+    foreach ($hotels as $hotel) {
+        if ($data["hotel-parking"] === 'true' && $hotel['parking'] && $hotel["vote"] >= $data["hotel-vote"]) {
+            $filtered[] = $hotel;
+        } elseif ($data["hotel-parking"] === 'false' && !$hotel['parking'] && $hotel["vote"] >= $data["hotel-vote"]) {
+            $filtered[] = $hotel;
+        }
+    }
+} elseif ($_GET["hotel-parking"]) {
+    foreach ($hotels as $hotel) {
+        if ($data["hotel-parking"] === 'true' && $hotel['parking']) {
+            $filtered[] = $hotel;
+        } elseif ($data["hotel-parking"] === 'false' && !$hotel['parking']) {
+            $filtered[] = $hotel;
+        }
+    }
+}
+
+var_dump($filtered);
 ?>
 
 
@@ -72,8 +92,8 @@ $hotels = [
                 <label for="hotel-parking">L'Hotel deve avere il parcheggio?</label>
                 <select name="hotel-parking" id="hotel-parking">
                     <option value=""></option>
-                    <option value="si">Si</option>
-                    <option value="no">No</option>
+                    <option value="true">Si</option>
+                    <option value="false">No</option>
                 </select>
             </div>
             <div class="m-3">
@@ -83,6 +103,7 @@ $hotels = [
             <div class="m-3">
                 <button class="me-3" type="submit">Invia</button>
                 <button type="reset">Cancella</button>
+                <a href="index.php">Aggiorna la pagina</a>
             </div>
         </form>
         <h1>Lista Hotels</h1>
@@ -98,11 +119,11 @@ $hotels = [
             </thead>
             <tbody>
                 <?php
-                foreach ($hotels as $hotel) { ?>
+                foreach ($filtered as $hotel) { ?>
                     <tr>
                         <?php foreach ($hotel as $key => $item) {
                             if ($key === "parking") {
-                                if ($item && $data["hotel-parking"] === 'si') { ?>
+                                if ($item) { ?>
                                     <th scope="row"> <?php echo "presente" ?> </th>
                                 <?php } else { ?>
                                     <th scope="row"> <?php echo "assente" ?> </th>
