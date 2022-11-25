@@ -74,7 +74,7 @@ $hotels = [
                     <th scope="col">Descrizione</th>
                     <th scope="col">Parcheggio</th>
                     <th scope="col">Voto</th>
-                    <th scope="col">Distanza dal centro</th>
+                    <th scope="col">Distanza dal centro [km]</th>
                 </tr>
             </thead>
             <tbody>
@@ -82,11 +82,14 @@ $hotels = [
                 foreach ($hotels as $hotel) { ?>
                     <tr>
                         <?php foreach ($hotel as $key => $item) {
-                            if ($hotel["parking"]) {
-                                $hotel["parking"] = "presente";
-                            } else {
-                                $hotel["parking"] = 'assente';
-                            } ?>
+                            if ($key === "parking") {
+                                if ($item) { ?>
+                                    <th scope="row"> <?php echo "presente" ?> </th>
+                                <?php } else { ?>
+                                    <th scope="row"> <?php echo "assente" ?> </th>
+                            <?php }
+                            }
+                            ?>
 
                             <th scope="row"> <?php echo $item ?> </th>
                         <?php } ?>
