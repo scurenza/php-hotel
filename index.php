@@ -1,6 +1,6 @@
 <?php
 $data = $_GET;
-var_dump($data);
+// var_dump($data);
 $hotels = [
 
     [
@@ -57,9 +57,19 @@ if ($_GET["hotel-parking"] && $_GET["hotel-vote"]) {
             $filtered[] = $hotel;
         }
     }
+} elseif ($_GET["hotel-vote"]) {
+    foreach ($hotels as $hotel) {
+        if ($hotel["vote"] >= $data["hotel-vote"]) {
+            $filtered[] = $hotel;
+        }
+    }
+} elseif (!$_GET) {
+    foreach ($hotels as $hotel) {
+        $filtered[] = $hotel;
+    }
 }
 
-var_dump($filtered);
+// var_dump($filtered);
 ?>
 
 
@@ -102,8 +112,8 @@ var_dump($filtered);
             </div>
             <div class="m-3">
                 <button class="me-3" type="submit">Invia</button>
-                <button type="reset">Cancella</button>
-                <a href="index.php">Aggiorna la pagina</a>
+                <button class="me-3" type="reset">Cancella</button>
+                <a href="index.php">Cancella i filtri</a>
             </div>
         </form>
         <h1>Lista Hotels</h1>
